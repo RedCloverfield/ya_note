@@ -12,7 +12,7 @@ from django.urls import reverse
         ('notes:home', 'users:login', 'users:logout', 'users:signup')
 )
 # Указываем в фикстурах встроенный клиент.
-def test_home_availability_for_anonymous_user(client, name):
+def test_pages_availability_for_anonymous_user(client, name):
     # Адрес страницы получаем через reverse():
     url = reverse(name)
     response = client.get(url)
@@ -23,7 +23,7 @@ def test_home_availability_for_anonymous_user(client, name):
     'name',
     ('notes:list', 'notes:add', 'notes:success')
 )
-def test_home_availability_for_auth_user(admin_client, name):
+def test_pages_availability_for_auth_user(admin_client, name):
     url = reverse(name)
     response = admin_client.get(url)
     assert response.status_code == HTTPStatus.OK
